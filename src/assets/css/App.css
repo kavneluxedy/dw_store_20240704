@@ -1,0 +1,14 @@
+.root-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Hauteur minimale de la vue */
+}
+
+.outlet {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-start;
+    /* Permet au contenu de remplir l'espace disponible */
+}

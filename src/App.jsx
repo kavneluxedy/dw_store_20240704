@@ -1,25 +1,30 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
-import { NavBar } from "./components/NavBar";
-import { Footer } from "./components/Footer";
+import Homepage from "./components/Homepage";
+import { NavBar } from "./components/templates/NavBar";
+import { Footer } from "./components/templates/Footer";
+import Products from "./features/products/Products";
+import NotFound404 from "./components/templates/NotFound404";
+import "./assets/css/App.css";
+import { store } from "./features/products/productSlice";
+import { Provider } from "react-redux";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "",
       element: <Root />,
       children: [
         {
           path: "",
-          element: <>Homepage</>,
+          Component: Homepage,
         },
         {
           path: "/products",
-          element: <>products</>,
+          Component: Products,
         },
         {
           path: "*",
-          element: <>404</>,
+          Component: NotFound404,
         },
       ],
     },
@@ -27,7 +32,7 @@ function App() {
 
   function Root() {
     return (
-      <>
+      <Provider store={store}>
         <div className="root-container">
           <NavBar />
           <div className="outlet">
@@ -35,7 +40,7 @@ function App() {
           </div>
           <Footer />
         </div>
-      </>
+      </Provider>
     );
   }
 
